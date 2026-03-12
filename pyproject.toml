@@ -1,0 +1,13 @@
+[project]
+name = "biosenales"
+version = "0.1.0"
+description = "A bioseñales processing script"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas",
+    "scipy",
+    "matplotlib",
+    "pywavelets>=1.8.0",
+    "seaborn>=0.13.2",
+]

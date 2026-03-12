@@ -1,0 +1,6 @@
+dataset_dia1
+overleaf
+.venv
+__pycache__
+*.pdf
+uv.lock
