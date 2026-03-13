@@ -34,20 +34,21 @@ def main(ruta):
 
         # 4. Graficación (Punto 2: 2 instancias por clase)
         if contadores[clase] < 2:
+            idx_paciente = contadores[clase]
             contadores[clase] += 1
             
             # Gráfica Tiempo
             plt.figure(figsize=(6, 2))
             plt.plot(instancia[:, 0])
-            plt.title(f'Tiempo - Clase {clase} (Instancia {i})')
-            plt.savefig(f'tiempo_c{clase}_i{i}.png')
+            plt.title(f'Tiempo - Clase {clase} (Instancia {idx_paciente})')
+            plt.savefig(f'tiempo_c{clase}_i{idx_paciente}.png')
             plt.close()
             
             # Gráfica Frecuencia
             plt.figure(figsize=(6, 2))
             plt.magnitude_spectrum(instancia[:, 0], Fs=200)
-            plt.title(f'Frecuencia - Clase {clase} (Instancia {i})')
-            plt.savefig(f'frecuencia_c{clase}_i{i}.png')
+            plt.title(f'Frecuencia - Clase {clase} (Instancia {idx_paciente})')
+            plt.savefig(f'frecuencia_c{clase}_i{idx_paciente}.png')
             plt.close()
 
             # Gráfica Tiempo-Frecuencia (CWT)
@@ -55,8 +56,8 @@ def main(ruta):
             # Usamos la lógica de la transformada continua directamente para la imagen
             coeffs, _ = pywt.cwt(instancia[:, 0], np.arange(1, 65), 'cmor')
             plt.imshow(np.abs(coeffs), aspect='auto', cmap='jet')
-            plt.title(f'T-F (CWT) - Clase {clase} (Instancia {i})')
-            plt.savefig(f'tf_cwt_c{clase}_i{i}.png')
+            plt.title(f'T-F (CWT) - Clase {clase} (Instancia {idx_paciente})')
+            plt.savefig(f'tf_cwt_c{clase}_i{idx_paciente}.png')
             plt.close()
             
             # Gráfica Tiempo-Frecuencia (DWT - Niveles)
@@ -67,7 +68,7 @@ def main(ruta):
                 plt.plot(c)
                 plt.title(f'DWT Nivel {len(coeffs_dwt)-level}')
             plt.tight_layout()
-            plt.savefig(f'tf_dwt_c{clase}_i{i}.png')
+            plt.savefig(f'tf_dwt_c{clase}_i{idx_paciente}.png')
             plt.close()
 
     # 5. Generación de los 3 CSV requeridos
